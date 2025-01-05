@@ -1,0 +1,25 @@
+services:
+  mongodb:
+    container_name: mongodb-container-bsn
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_bsn:/data.db
+    networks:
+      - spring-bsn-network
+    restart: unless-stopped
+
+  mail-dev:
+    container_name: mail-dev-bsn
+    image: maildev/maildev
+    ports:
+      - "1080:1080"
+      - "1025:1025"
+
+networks:
+  spring-bsn-network:
+    driver: bridge
+
+volumes:
+  mongodb_bsn:

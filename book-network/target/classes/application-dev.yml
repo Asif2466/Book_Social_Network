@@ -1,0 +1,33 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/book_social_network
+      database: book_social_network
+
+  mail:
+    host: localhost
+    port: 1025
+    properties:
+      mail:
+        smtp:
+          trust: "*"
+        auth: true
+        starttls:
+          enable: true
+        connnectiontimeout: 5000
+        timeout: 3000
+        writetimeout: 5000
+
+application:
+  security:
+    jwt:
+      secret-key: 2aeee8724ad57e3683fe4a9e35f79f660a9153257ef5fb70ce298feac7e4360ec28e5e2079d5fce918e5b7a9a971a97126a0fcf59b0c727f3ff192fabba289ee4ede98487f3000b39228664c5836c010d3e2d284f0fd53128327540cd715aa3d79e32696d6c79db515dbf90aa6bbeaba926e4361d1f9b11f089b08da91b03703e01670025ecc9821baddadf62ece9b142c7d36dc6febcf43b8fe1165639acc69bfa464c26ed6afc8355ee22191aa7505499ebb298b58905ecbcc25efc3d0148cbcbac401ca4cb1a6409ba457ca5101d98e682b92bb52a4921a510d27ab1cf7ef23a1a6237d8cf8d5e57ffa7ffecbd3736b9094d5cef8142d7a5981799b834441
+      expiration: 86400000
+
+  mailing:
+    frontend:
+      activation-url: http://localhost:4200/activate-account
+
+server:
+  port: 8050
+
