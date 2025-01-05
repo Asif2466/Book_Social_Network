@@ -6,10 +6,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -20,11 +17,19 @@ public class AuthenticationController {
     private final AuthenticationService authenticationService;
 
     @PostMapping("/register")
-    public ResponseEntity<?> register(
-            @RequestBody @Valid RegistrationRequest request
-    ) throws MessagingException {
+    public ResponseEntity<?> register(@RequestBody @Valid RegistrationRequest request)
+            throws MessagingException {
         authenticationService.register(request);
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 
+    @PostMapping("/authenticate")
+    public ResponseEntity<AuthenticationResponse> authenticate(AuthenticationRequest request){
+        return ResponseEntity.ok(authenticationService.authenticate(request));
+    }
+
+    @GetMapping("/activate-account")
+    public void Confirm(@RequestParam String token) throws MessagingException {
+        authenticationService.activateAccount(token);
+    }
 }

@@ -27,7 +27,7 @@ public class JWT_Service {
         return generateToken(new HashMap<>(), userDetails);
     }
 
-    private  String generateToken(HashMap<String,Object> extraClaims, UserDetails userDetails) {
+    public  String generateToken(HashMap<String,Object> extraClaims, UserDetails userDetails) {
         return buildToken(extraClaims, userDetails, jwtExpiration);
     }
 
@@ -56,10 +56,10 @@ public class JWT_Service {
 
     public boolean validateToken(String token, UserDetails userDetails) {
         final String username = extractUsername(token);
-        return username.equals(userDetails.getUsername()) && isTokenExpired(token, userDetails);
+        return username.equals(userDetails.getUsername()) && isTokenExpired(token);
     }
 
-    private boolean isTokenExpired(String token, UserDetails userDetails) {
+    private boolean isTokenExpired(String token) {
         return extractExpiration(token).before(new Date());
     }
 
