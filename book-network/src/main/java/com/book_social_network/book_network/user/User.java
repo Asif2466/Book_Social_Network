@@ -1,5 +1,7 @@
 package com.book_social_network.book_network.user;
 
+import com.book_social_network.book_network.book.Book;
+import com.book_social_network.book_network.history.BookTransactionHistory;
 import com.book_social_network.book_network.role.Role;
 
 import jakarta.validation.constraints.NotNull;
@@ -54,6 +56,14 @@ public class User implements UserDetails, Principal {
 //    @ManyToMany(fetch = FetchType.EAGER)
     @DBRef
     private List<Role> roles;
+
+    // @OnetoMany
+    @DBRef
+    private List<Book> books;
+
+    @DBRef
+    private List<BookTransactionHistory> histories;
+
 
     @Override
     public String getName() {
