@@ -1,6 +1,5 @@
-package com.book_social_network.book_network.audit;
+package com.book_social_network.book_network.config;
 
-import com.book_social_network.book_network.user.User;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
