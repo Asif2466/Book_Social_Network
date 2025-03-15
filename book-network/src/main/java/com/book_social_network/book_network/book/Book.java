@@ -41,6 +41,21 @@ public class Book extends BaseEntity {
 
     @DBRef
     private List<BookTransactionHistory> histories;
+
+    @Transient
+    public double getRate(){
+        if(feedbacks == null || feedbacks.isEmpty()){
+            return 0.0;
+        }
+        var rate = this.feedbacks.stream()
+                .mapToDouble(feedback -> feedback.getScore())
+                .average()
+                .orElse(0.0);
+        // if rate is 3.23 --> 3.0 || 3.65 --> 4.0
+        double roundedRate = Math.round(rate * 10.0) / 10.0;
+
+        return roundedRate;
+    }
 //    @CreatedDate
 //    @NotNull
 //    private LocalDate createdDate;
